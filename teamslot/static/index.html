@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TeamSlot · 團隊資源預約</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="wordmark"><span class="logo">T</span> TeamSlot <span class="version">v0.1</span></div>
+      <span class="local-badge">LOCAL DEMO</span>
+    </header>
+    <main>
+      <section class="intro">
+        <p class="eyebrow">LESS BACK-AND-FORTH. MORE TEAMWORK.</p>
+        <h1>把時間留給合作。</h1>
+        <p>共用空間、會議室與設備，一個地方安排妥當。<br>自動檢查時段衝突，讓每次預約都有把握。</p>
+      </section>
+      <p id="message" class="message" role="status" aria-live="polite" hidden></p>
+      <div class="workspace">
+        <aside class="card">
+          <h2>01 <span>選擇資源</span></h2>
+          <label for="resource">預約項目</label>
+          <select id="resource"><option value="">載入中…</option></select>
+          <form id="resource-form">
+            <label for="resource-name">新增資源</label>
+            <div class="inline"><input id="resource-name" maxlength="80" placeholder="例如：會議室 A" required><button class="secondary" type="submit">新增</button></div>
+          </form>
+          <div class="divider"></div>
+          <h2>02 <span>建立預約</span></h2>
+          <form id="booking-form">
+            <label for="title">預約用途</label>
+            <input id="title" maxlength="120" placeholder="例如：每週專案討論" required>
+            <label for="organizer">預約人（顯示名稱）</label>
+            <input id="organizer" maxlength="80" placeholder="例如：Alex" required>
+            <label for="start">開始時間</label>
+            <input id="start" type="datetime-local" required>
+            <label for="end">結束時間</label>
+            <input id="end" type="datetime-local" required>
+            <p class="hint">時間以你的裝置時區顯示，每筆最長 8 小時。</p>
+            <button id="book-button" type="submit">確認預約 <span aria-hidden="true">↗</span></button>
+          </form>
+        </aside>
+        <section class="card schedule">
+          <div class="section-top"><div><p class="eyebrow">YOUR TEAM'S NEXT CHAPTER</p><h2>資源行程</h2></div><input id="day" type="date" aria-label="查詢日期" required></div>
+          <p id="timezone" class="hint"></p>
+          <div class="schedule-label">當日預約 <span id="count">0</span></div>
+          <div id="bookings" class="bookings"><p class="empty">新增資源後，開始安排第一個預約。</p></div>
+          <div class="divider"></div>
+          <div class="section-top"><h3>可用時段</h3><span class="hint">至少 30 分鐘</span></div>
+          <div id="availability" class="availability"></div>
+          <div id="receipt" class="receipt" hidden>
+            <h3>預約成功 · 保存取消憑證</h3>
+            <p>此憑證只會在建立時顯示。重新整理頁面後，可使用預約編號與憑證取消。</p>
+            <label for="receipt-id">預約編號</label><input id="receipt-id" readonly>
+            <label for="receipt-token">取消憑證</label><input id="receipt-token" readonly>
+          </div>
+          <details>
+            <summary>使用憑證取消預約</summary>
+            <form id="cancel-form">
+              <label for="cancel-id">預約編號</label><input id="cancel-id" required>
+              <label for="cancel-token">取消憑證</label><input id="cancel-token" type="password" autocomplete="off" required>
+              <button class="secondary" type="submit">取消這筆預約</button>
+            </form>
+          </details>
+        </section>
+      </div>
+    </main>
+    <footer><span>TeamSlot / Resource scheduling, thoughtfully built.</span><span>本機作品展示 · 請使用示範資料</span></footer>
+  </div>
+</body>
+</html>
