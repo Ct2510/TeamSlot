@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "teamslot"
+version = "0.1.0"
+description = "A SQLite-backed resource scheduling API with atomic conflict detection"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+teamslot = "teamslot.__main__:main"
+
+[tool.setuptools.package-data]
+teamslot = ["static/*"]
+
+[tool.setuptools.packages.find]
+include = ["teamslot*"]
